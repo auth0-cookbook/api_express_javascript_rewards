@@ -1,0 +1,13 @@
+{
+  "rewards": [
+    {
+      "id": "9087654321",
+      "balance": 830,
+      "alerts": {
+        "text": false,
+        "email": true
+
+      }
+    }
+  ]
+}

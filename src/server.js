@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const { rewardsRouter } = require("./rewards/rewards.router");
+const { accountsRouter } = require("./accounts/accounts.router");
 
 const PORT = parseInt(process.env.PORT, 10);
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", rewardsApiRouter);
-rewardsApiRouter.use("/rewards", rewardsRouter);
+rewardsApiRouter.use("/rewards/accounts", accountsRouter);
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);

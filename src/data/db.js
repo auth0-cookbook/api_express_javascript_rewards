@@ -2,10 +2,10 @@ const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 
 const adapter = new FileSync("./src/data/db.json", {
-  defaultValue: { rewards: {}, alerts: {} },
+  defaultValue: { accounts: {} },
 });
 
 const db = low(adapter);
-const rewardsCollection = "rewards";
+const accountsCollection = "accounts";
 
-module.exports = { db, rewardsCollection };
+module.exports = { db, accountsCollection };

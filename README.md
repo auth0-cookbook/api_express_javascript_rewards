@@ -59,7 +59,7 @@ These endpoints require the request to include an access token issued by Auth0 i
 Provides rewards data using a customer ID.
 
 ```bash
-GET /api/rewards/:id
+GET /api/accounts/:id
 ```
 
 ##### Response
@@ -167,7 +167,7 @@ You need an access token to call any of the protected API endpoints.
 Try to make the following request:
 
 ```bash
-curl <SERVER_ROOT_URL>/api/rewards/9087654321
+curl <SERVER_ROOT_URL>/api/accounts/9087654321
 ```
 
 You'll get the following response error:
@@ -198,7 +198,7 @@ Replace the value of the `--url` parameter with your `GET api/rewards/:id` endpo
 
 ```bash
 curl --request GET \
-  --url <SERVER_ROOT_URL>/api/rewards/9087654321 \
+  --url <SERVER_ROOT_URL>/api/accounts/9087654321 \
   --header 'authorization: Bearer really-long-string'
 ```
 

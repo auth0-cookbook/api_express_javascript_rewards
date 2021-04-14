@@ -1,13 +1,11 @@
 {
-  "rewards": [
+  "accounts": [
     {
-      "id": "9087654321",
+      "id": 1617480104622,
+      "customerId": 9087654321,
       "balance": 830,
-      "alerts": {
-        "text": false,
-        "email": true
-
-      }
+      "createdAt": 1617480104622,
+      "perks": ["5% off entire sale", "1 free drink every month"]
     }
   ]
 }

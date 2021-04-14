@@ -10,7 +10,7 @@ There are two ways to get started: you can work with a local repository or you c
 
 ### Use a local repository
 
-Clone the repository: 
+Clone the repository:
 
 ```bash
 git clone git@github.com:auth0-cookbook/api_express_javascript_rewards.git
@@ -78,15 +78,14 @@ Status: 200 OK
 
 ```json
 {
-  "id":"9087654321",
-  "balance":830,
+  "id": "9087654321",
+  "balance": 830,
   "alerts": {
     "text": false,
     "email": true
   }
 }
 ```
-
 
 ## 2. Register an API Server with Auth0
 
@@ -139,7 +138,7 @@ Now, **follow these steps to get the Auth0 Domain value**:
 - The Auth0 Domain is the substring between the protocol, `https://` and the path `/oauth/token`.
 
 - The Auth0 Domain follows this pattern: `tenant-name.region.auth0.com`.
- 
+
 - The `region` subdomain (`au`, `us`, or `eu`) is optional. Some Auth0 Domains don't have it.
 
 - **Click on the image above, please, if you have any doubt on how to get the Auth0 Domain value**.
@@ -157,7 +156,7 @@ The Glitch server root URL is `https://<random-long-string>.glitch.me`.
 > You can find the Glitch project server URL by following these instructions:
 >
 > In your Glitch project, click on the **"Share"** button, which you can find under the project name in the top-left corner.
-> 
+>
 > Look for the **Project links** section and copy the **"Live Site"** link.
 
 ### Test a protected endpoint
@@ -205,4 +204,3 @@ curl --request GET \
 Copy and paste the updated cURL command into a terminal window and execute it. You should now get a valid response.
 
 You can also use any of the Auth0 Eats client applications to consume this API. The client applications require users to log in, obtaining an access token in the background, before they can call the Auth0 Eats Rewards API.
-

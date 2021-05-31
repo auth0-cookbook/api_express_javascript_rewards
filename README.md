@@ -1,54 +1,105 @@
-# Auth0 Eats Rewards API
+# Rewards API: Express.js + JavaScript Sample
 
-You can use this sample to learn how to secure an Express API server with Auth0. You can then use a client application to practice making secure API calls.
+This repository contains a Node.js project that defines an Express API. You'll secure this API with Auth0 to practice making secure API calls from a client application.
 
-As part of the setup process, you'll also learn how to quickly host this API on the cloud using Glitch.com and how to test it using the command line.
+## Quick Auth0 Set Up
 
-## 1. Get Started
-
-There are two ways to get started: you can work with a local repository or you can work with a cloud project using Glitch.
-
-### Use a local repository
-
-Clone the repository:
-
-```bash
-git clone git@github.com:auth0-cookbook/api_express_javascript_rewards.git
-```
-
-Make the project directory your current directory:
-
-```bash
-cd api_express_javascript_rewards
-```
+### Set up the project
 
 Install the project dependencies:
 
 ```bash
-npm i
+npm install
 ```
 
-Create a `.env` file under the project directory:
+Create `.env` file under the project directory:
 
 ```bash
-.env
+touch .env
 ```
 
-Finally, run the project:
+Populate `.env` as follows:
+
+```bash
+API_SERVER_PORT=6060
+CLIENT_ORIGIN_URL=http://localhost:4040
+AUTH0_AUDIENCE=
+AUTH0_DOMAIN=
+```
+
+### Register an Express API with Auth0
+
+- Open the [APIs](https://manage.auth0.com/#/apis) section of the Auth0 Dashboard.
+
+- Click on the **Create API** button.
+
+- Provide a **Name** value such as _Rewards API Server_.
+
+- Set its **Identifier** to `https://api.example.com` or any other value of your liking.
+
+- Leave the signing algorithm as `RS256` as it's the best option from a security standpoint.
+
+- Click on the **Create** button.
+
+> View ["Register APIs" document](https://auth0.com/docs/get-started/set-up-apis) for more details.
+
+### Connect Express with Auth0
+
+Get the values for `AUTH0_AUDIENCE` and `AUTH0_DOMAIN` in `.env` from your Auth0 API registration in the Auth0 Dashboard.
+
+Head back to your Auth0 API page, and **follow these steps to get the Auth0 Audience**:
+
+![Get the Auth0 Audience to configure an API](https://images.ctfassets.net/23aumh6u8s0i/5QNK2SojATbHuWTHaDFHoI/7f6dde667cca2e04a93fbe96a7cdc7bf/api_audience.png)
+
+1. Click on the **"Settings"** tab.
+
+2. Locate the **"Identifier"** field and copy its value.
+
+3. Paste the "Identifier" value as the value of `AUTH0_AUDIENCE` in `.env`.
+
+Now, **follow these steps to get the Auth0 Domain value**:
+
+![Get the Auth0 Domain to configure an API](https://images.ctfassets.net/23aumh6u8s0i/PnKFPlGUcKbYr5WT7KY5v/9a958d18d6b454b52344e0f8b7eb0e76/api_auth0_domain.png)
+
+1. Open the [Auth0 Domain Settings](https://manage.auth0.com/#/tenant/custom_domains)
+
+2. Locate the bold text in the page description that follows this pattern: `tenant-name.region.auth0.com`. That's your Auth0 domain!
+   
+3. Paste the Auth0 domain value as the value of `AUTH0_DOMAIN` in `.env`.
+
+> The `region` subdomain (`au`, `us`, or `eu`) is optional. Some Auth0 Domains don't have it.
+
+### Run the project
+
+With the `.env` configuration values set, run the API server by issuing the following command:
 
 ```bash
 npm start
 ```
 
-### Use Glitch, an online IDE
+## Test the Protected Endpoints
 
-Glitch lets you edit a Node.js project on the cloud and create a live server quickly.
+You can get an access token from the Auth0 Dashboard to test making a secure call to your protected API endpoints.
 
-Open this Glitch project: [https://glitch.com/edit/#!/api--express--javascript--rewards](https://glitch.com/edit/#!/api--express--javascript--rewards?path=README.md%3A1%3A0)
+Head back to your Auth0 API page and click on the **"Test"** tab.
 
-Click on the **"Remix to Edit"** button in the top-right corner.
+If this is the first time that you are setting up a testing application, click on the **"Create & Authorize Test Application"** button.
 
-That's it!
+Locate the section called **"Sending the token to the API"**.
+
+Click on the **cURL** tab of the code box.
+
+Copy the sample cURL command:
+
+```bash
+curl --request GET \
+  --url http://path_to_your_api/ \
+  --header 'authorization: Bearer really-long-string-which-is-test-your-access-token'
+```
+
+Replace the value of `http://path_to_your_api/` with your protected API endpoint path (you can find all the available API endpoints in the next section) and execute the command. You should receive back a successful response from the server.
+
+You can try out any of our full stack demos to see the client-server Auth0 workflow in action using your preferred front-end and back-end technologies.
 
 ### API Endpoints
 
@@ -86,121 +137,3 @@ Status: 200 OK
   }
 }
 ```
-
-## 2. Register an API Server with Auth0
-
-You need an Auth0 account. If you don't have one yet, [sign up for a free Auth0 account](https://auth0.com/signup).
-
-Open the [APIs section of the Auth0 Dashboard](https://manage.auth0.com/#/apis), click the **"Create API"** button.
-
-Fill out the form that comes up:
-
-- **Name:** Auth0 Eats Rewards API Sample
-
-- **Identifier:** `https://rewards.example.com`
-
-Leave the signing algorithm as `RS256`. It's the best option from a security standpoint.
-
-Once you've added those values, click the **"Create"** button.
-
-Once you create an Auth0 API, a new page loads up, presenting you with your Auth0 API information.
-
-Keep page open to complete the next step.
-
-## 3. Connect the Server with Auth0
-
-Click on the `.env` file from your local project or your Glitch project.
-
-You'll need to add the values for `AUTH0_AUDIENCE` and `AUTH0_DOMAIN` from your Auth0 API configuration.
-
-Head back to your Auth0 API page, and **follow these steps to get the Auth0 Audience**:
-
-![Get the Auth0 Audience to configure an API](https://cdn.auth0.com/blog/complete-guide-to-user-authentication/get-the-auth0-audience.png)
-
-1. Click on the **"Settings"** tab.
-
-2. Locate the **"Identifier"** field and copy its value.
-
-3. Paste the **"Identifier"** value as the value of `AUTH0_AUDIENCE` in `.env`.
-
-Now, **follow these steps to get the Auth0 Domain value**:
-
-![Get the Auth0 Domain to configure an API](https://cdn.auth0.com/blog/complete-guide-to-user-authentication/get-the-auth0-domain.png)
-
-1. Click on the **"Test"** tab.
-2. Locate the section called **"Asking Auth0 for tokens from my application"**.
-3. Click on the **cURL** tab to show a mock `POST` request.
-4. Copy your Auth0 domain, which is _part_ of the `--url` parameter value: `tenant-name.region.auth0.com`.
-5. Paste the Auth0 domain value as the value of `AUTH0_DOMAIN` in `.env`.
-
-**Tips to get the Auth0 Domain**
-
-- The Auth0 Domain is the substring between the protocol, `https://` and the path `/oauth/token`.
-
-- The Auth0 Domain follows this pattern: `tenant-name.region.auth0.com`.
-
-- The `region` subdomain (`au`, `us`, or `eu`) is optional. Some Auth0 Domains don't have it.
-
-- **Click on the image above, please, if you have any doubt on how to get the Auth0 Domain value**.
-
-With the `.env` configuration values set, you need to restart the local server so that Express can see these new environment variables. If you are using Glitch, simply refresh the project page.
-
-## 4. Test the Server
-
-You need your API server root URL to make requests.
-
-The local server root URL is `http://localhost:6060`.
-
-The Glitch server root URL is `https://<random-long-string>.glitch.me`.
-
-> You can find the Glitch project server URL by following these instructions:
->
-> In your Glitch project, click on the **"Share"** button, which you can find under the project name in the top-left corner.
->
-> Look for the **Project links** section and copy the **"Live Site"** link.
-
-### Test a protected endpoint
-
-You need an access token to call any of the protected API endpoints.
-
-Try to make the following request:
-
-```bash
-curl <SERVER_ROOT_URL>/api/accounts/9087654321
-```
-
-You'll get the following response error:
-
-```bash
-No authorization token was found
-```
-
-To get an access token, head back to your API configuration page in the Auth0 Dashboard.
-
-Click on the **"Test"** tab and locate the **"Sending the token to the API"**.
-
-Click on the **"cURL"** tab.
-
-You should see something like this:
-
-```bash
-curl --request GET \
-  --url <SERVER_ROOT_URL>/path_to_your_api/ \
-  --header 'authorization: Bearer really-long-string'
-```
-
-Copy and paste that value in a text editor.
-
-In the value of the `--header` parameter, the value of `really-long-string` is your access token.
-
-Replace the value of the `--url` parameter with your `GET api/rewards/:id` endpoint URL:
-
-```bash
-curl --request GET \
-  --url <SERVER_ROOT_URL>/api/accounts/9087654321 \
-  --header 'authorization: Bearer really-long-string'
-```
-
-Copy and paste the updated cURL command into a terminal window and execute it. You should now get a valid response.
-
-You can also use any of the Auth0 Eats client applications to consume this API. The client applications require users to log in, obtaining an access token in the background, before they can call the Auth0 Eats Rewards API.
